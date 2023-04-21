@@ -12,11 +12,11 @@ public class AppDbContext : IdentityDbContext
 
     }
 
-    public DbSet<Basket>? Baskets { get; set; }
-    public DbSet<BookedProduct>? BookedProducts { get; set; }
-    public DbSet<Brand>? Brands { get; set; }
-    public DbSet<Category>? Categories { get; set; }
-    public DbSet<Product>? Products { get; set; }
-    public DbSet<ProductInfo>? ProductInfos { get; set; }
-    public DbSet<Rate>? Rates { get; set; }
+    public DbSet<Basket> Baskets { get; set; }
+    public DbSet<BookedProduct> BookedProducts { get; set; }
+    public DbSet<Brand> Brands { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<ProductInfo> ProductInfos { get; set; }
+    public DbSet<Rate> Rates { get; set; }
 }

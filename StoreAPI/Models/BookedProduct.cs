@@ -2,7 +2,7 @@
 
 public class BookedProduct
 {
-    public int Id;
-    public int ProductId;
-    public int BasketId;
+    public int Id { get; set; }
+    public int ProductId { get; set; }
+    public int BasketId { get; set; }
 }

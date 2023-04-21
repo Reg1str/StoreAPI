@@ -2,8 +2,8 @@
 
 public class Rate
 {
-    public int Id;
-    public int UserId;
-    public int ProductId;
-    public double Mark;
+    public int Id { get; set; }
+    public int UserId { get; set; }
+    public int ProductId { get; set; }
+    public double Mark { get; set; }
 }

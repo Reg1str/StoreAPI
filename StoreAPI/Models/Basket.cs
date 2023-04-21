@@ -2,6 +2,6 @@
 
 public class Basket
 {
-    public int Id;
-    public int UserId;
+    public int Id { get; set; }
+    public int UserId { get; set; }
 }
