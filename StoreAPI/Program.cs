@@ -1,8 +1,11 @@
+using StoreAPI.Database.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IRepository, Repository>();
 
 var app = builder.Build();
 
