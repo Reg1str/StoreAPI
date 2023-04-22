@@ -38,7 +38,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPut("update/{id}")]
-    public async Task<ActionResult<Product>> UpdateProduct(Product newProduct)
+    public async Task<ActionResult<List<Product>>> UpdateProduct(Product newProduct)
     {
         if (newProduct.Id > 0)
         {
@@ -57,7 +57,7 @@ public class ProductController : ControllerBase
         {
             _logger.LogInformation("{Now}: Successful write product to data base",
                 new DateTime(638177575191726912L, DateTimeKind.Local));
-            var result = _repository.GetProduct(newProduct.Id);
+            var result = _repository.GetAllProducts();
 
             return Ok(result);
         }
