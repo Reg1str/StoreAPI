@@ -8,5 +8,10 @@ namespace StoreAPI.Controllers;
 [Authorize(Roles = "Admin")]
 public class AdminController : ControllerBase
 {
-    
+    private readonly ILogger<AdminController> _logger;
+
+    public AdminController(ILogger<AdminController> logger)
+    {
+        _logger = logger;
+    }
 }
