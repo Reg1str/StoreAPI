@@ -12,6 +12,12 @@ public class AppDbContext : IdentityDbContext
 
     }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+        optionsBuilder.UseSqlServer("Server=localhost;Database=Store;Trusted_Connection=True;TrustServerCertificate=True;");
+    }
+
     public DbSet<Basket> Baskets { get; set; }
     public DbSet<BookedProduct> BookedProducts { get; set; }
     public DbSet<Brand> Brands { get; set; }
