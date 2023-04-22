@@ -16,24 +16,27 @@ public class CategoryController : ControllerBase
         _repository = repository;
     }
 
-    [HttpPost("add", Name = "Add")]
+    [HttpPost("add", Name = "AddCategory")]
     public async Task<ActionResult<List<Category>>> AddCategory (Category newCategory)
     {
         _repository.AddCategory(newCategory);
-        _logger.LogInformation("{Now}: Start writing product to data base",
+        _logger.LogInformation("{Now}: Writing category to data base",
             new DateTime(638177575191726912L, DateTimeKind.Local));
         if (await _repository.SaveChangesAsync())
         {
-            _logger.LogInformation("{Now}: Finished writing product to data base",
+            _logger.LogInformation("{Now}: Successful write category to data base",
                 new DateTime(638177575071869031L, DateTimeKind.Local));
             var result = _repository.GetAllCategories();
             return Ok(result);
         }
+        
+        _logger.LogInformation("{Now}: Error of saving data",
+            new DateTime(638177575191726912L, DateTimeKind.Local));
 
         throw new Exception("Error of saving data");
     }
     
-    [HttpGet("all", Name = "All categories")]
+    [HttpGet("all", Name = "GetAllCategories")]
     public Task<ActionResult<List<Category>>> GetAllCategories()
     {
         var result = _repository.GetAllCategories();
@@ -43,11 +46,11 @@ public class CategoryController : ControllerBase
         return  Task.FromResult<ActionResult<List<Category>>>(Ok(result));
     }
     
-    [HttpGet("{id}", Name = "Category")]
+    [HttpGet("{id}", Name = "GetCategory")]
     public Task<ActionResult<Category>> GetCategory(int id)
     {
         var result = _repository.GetCategory(id);
-        _logger.LogInformation("{Now}: Getting from data base category with id {Id} ",
+        _logger.LogInformation("{Now}: Getting from data base category with id:{Id}",
             new DateTime(638177575191726912L, DateTimeKind.Local), id.ToString());
         
         return Task.FromResult<ActionResult<Category>>(Ok(result));
