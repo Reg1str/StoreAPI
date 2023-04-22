@@ -89,7 +89,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpDelete("remove/{id}", Name = "Removing product")]
-    public async Task<ActionResult<List<Product>>> RemoveProduct(int id)
+    public async Task<ActionResult<List<Product>>> DeleteProduct(int id)
     {
         _repository.RemoveProduct(id);
         _logger.LogInformation("{Now}:Removing from data base product with id:{Id}",
