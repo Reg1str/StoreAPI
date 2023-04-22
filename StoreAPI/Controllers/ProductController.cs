@@ -37,7 +37,7 @@ public class ProductController : ControllerBase
         throw new Exception("Error of saving data");
     }
 
-    [HttpPut("update/{id}")]
+    [HttpPut("update")]
     public async Task<ActionResult<List<Product>>> UpdateProduct(Product newProduct)
     {
         if (newProduct.Id > 0)
