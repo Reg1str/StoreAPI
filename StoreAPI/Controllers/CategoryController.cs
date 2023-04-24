@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreAPI.Database.Repository;
 using StoreAPI.Models;
 
@@ -17,6 +18,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPost("add", Name = "AddCategory")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<List<Category>>> AddCategory (Category newCategory)
     {
         _repository.AddCategory(newCategory);

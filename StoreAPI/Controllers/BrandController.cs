@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreAPI.Database.Repository;
 using StoreAPI.Models;
 
@@ -18,6 +19,7 @@ public class BrandController : ControllerBase
     }
     
     [HttpPost("add", Name = "AddBrand")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<List<Brand>>> AddBrand (Brand newBrand)
     {
         _repository.AddBrand(newBrand);

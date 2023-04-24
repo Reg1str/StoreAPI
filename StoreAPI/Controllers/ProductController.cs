@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreAPI.Database.Repository;
 using StoreAPI.Models;
 
@@ -18,6 +19,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost("add", Name = "AddProduct")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<List<Product>>> AddProduct(Product newProduct)
     {
         _repository.AddProduct(newProduct);
@@ -38,6 +40,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPut("update")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<List<Product>>> UpdateProduct(Product newProduct)
     {
         if (newProduct.Id > 0)
@@ -89,6 +92,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpDelete("remove/{id}", Name = "Removing product")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<List<Product>>> DeleteProduct(int id)
     {
         _repository.RemoveProduct(id);
