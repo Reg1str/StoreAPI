@@ -18,6 +18,7 @@ public interface IRepository
     void RemoveProduct(int id);
     void UpdateProduct(Product product);
     void AddCategory(Category category);
+    void AddBrand(Brand brand);
     void RemoveCategory(int id);
     Task<bool> SaveChangesAsync();
 }

@@ -96,6 +96,11 @@ public class Repository : IRepository
         _ctx.Categories.Add(category);
     }
 
+    public void AddBrand(Brand brand)
+    {
+        _ctx.Brands.Add(brand);
+    }
+
     public void RemoveCategory(int id)
     {
         _ctx.Categories.Remove(GetCategory(id));
