@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StoreAPI.Models;
 
@@ -17,6 +18,59 @@ public class AppDbContext : IdentityDbContext
         base.OnConfiguring(optionsBuilder);
         optionsBuilder.UseSqlServer(
             "Server=localhost;Database=Store;Trusted_Connection=True;TrustServerCertificate=True;");
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<IdentityUser>()
+            .HasOne<Basket>()
+            .WithOne()
+            .HasForeignKey<Basket>(e => e.UserId)
+            .IsRequired();
+    
+        modelBuilder.Entity<IdentityUser>()
+            .HasMany<Rate>()
+            .WithOne()
+            .HasForeignKey(e => e.UserId)
+            .IsRequired();
+    
+        modelBuilder.Entity<Product>()
+            .HasMany<BookedProduct>()
+            .WithOne()
+            .HasForeignKey(e => e.ProductId)
+            .IsRequired();
+    
+        modelBuilder.Entity<Product>()
+            .HasMany<ProductInfo>()
+            .WithOne()
+            .HasForeignKey(e => e.ProductId)
+            .IsRequired();
+        
+        modelBuilder.Entity<Product>()
+            .HasMany<Rate>()
+            .WithOne()
+            .HasForeignKey(e => e.ProductId)
+            .IsRequired();
+        
+        modelBuilder.Entity<Basket>()
+            .HasMany<BookedProduct>()
+            .WithOne()
+            .HasForeignKey(e => e.BasketId)
+            .IsRequired();
+        
+        modelBuilder.Entity<Brand>()
+            .HasMany<Product>()
+            .WithOne()
+            .HasForeignKey(e => e.BrandId)
+            .IsRequired();
+        
+        modelBuilder.Entity<Category>()
+            .HasMany<Product>()
+            .WithOne()
+            .HasForeignKey(e => e.CategoryId)
+            .IsRequired();
     }
 
     public DbSet<Basket> Baskets { get; set; }
