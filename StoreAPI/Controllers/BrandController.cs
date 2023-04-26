@@ -33,10 +33,10 @@ public class BrandController : ControllerBase
             return Ok(result);
         }
         
-        _logger.LogInformation("{Now}: Error of saving data",
+        _logger.LogInformation("{Now}: Error of saving brand",
             new DateTime(638177575191726912L, DateTimeKind.Local));
 
-        throw new Exception("Error of saving data");
+        return BadRequest("Error of saving data");
     }
     
     [HttpGet("all", Name = "GetAllBrands")]
