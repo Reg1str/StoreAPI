@@ -10,6 +10,21 @@ public class Repository : IRepository
     {
         _ctx = ctx;
     }
+
+    public User GetUser(int id)
+    {
+        return _ctx.Users
+                .FirstOrDefault(u => u.Id == id) ??
+                    throw new Exception("Users list is empty");
+    }
+
+    public User GetUser(string name)
+    {
+        return _ctx.Users
+            .FirstOrDefault(u=>u.UserName == name) ??
+               throw new Exception("Users list is empty");
+    }
+
     public Product GetProduct(int id)
     {
         return _ctx.Products
@@ -74,6 +89,11 @@ public class Repository : IRepository
         return _ctx.BookedProducts
             .FirstOrDefault(b=>b.Id == id) ??
                throw new Exception("There are no booked products");
+    }
+
+    public void AddUser(User user)
+    {
+        _ctx.Users.Add(user);
     }
 
     public void AddProduct(Product product)

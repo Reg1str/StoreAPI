@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StoreAPI.Models;
 
 namespace StoreAPI.Database;
 
-public class AppDbContext : IdentityDbContext
+public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
@@ -24,13 +23,13 @@ public class AppDbContext : IdentityDbContext
     {
         base.OnModelCreating(modelBuilder);
         
-        modelBuilder.Entity<IdentityUser>()
+        modelBuilder.Entity<User>()
             .HasOne<Basket>()
             .WithOne()
             .HasForeignKey<Basket>(e => e.UserId)
             .IsRequired();
     
-        modelBuilder.Entity<IdentityUser>()
+        modelBuilder.Entity<User>()
             .HasMany<Rate>()
             .WithOne()
             .HasForeignKey(e => e.UserId)
@@ -73,6 +72,7 @@ public class AppDbContext : IdentityDbContext
             .IsRequired();
     }
 
+    public DbSet<User> Users { get; set; }
     public DbSet<Basket> Baskets { get; set; }
     public DbSet<BookedProduct> BookedProducts { get; set; }
     public DbSet<Brand> Brands { get; set; }
