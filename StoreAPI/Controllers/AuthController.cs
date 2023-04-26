@@ -73,9 +73,4 @@ public class AuthController : ControllerBase
 
     }
     
-    // [HttpGet("check", Name = "Token check")]
-    // public async Task<IActionResult> Check()
-    // {
-    //     
-    // }
 }
